@@ -1,0 +1,53 @@
+// /* alert.component.css */
+
+/* Base styling for the alert */
+.alert {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  max-width: 400px;
+  z-index: 9999;
+  cursor: pointer;
+}
+
+/* Default colors for different types of alerts */
+.alert-success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.alert-error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.alert-warning {
+  background-color: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeeba;
+}
+
+.alert-info {
+  background-color: #d1ecf1;
+  color: #0c5460;
+  border: 1px solid #bee5eb;
+}
+
+/* Alert icon */
+.alert-icon {
+  margin-right: 10px;
+  font-size: 1.5rem;
+}
+
+/* Message text */
+.alert-message {
+  flex: 1;
+}

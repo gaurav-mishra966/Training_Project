@@ -1,0 +1,28 @@
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+button:disabled {
+  background-color: #d6d6d6;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+}

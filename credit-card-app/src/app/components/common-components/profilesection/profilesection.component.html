@@ -1,0 +1,25 @@
+<div class="profile-container">
+    <h2>User Profile</h2>
+
+    <!-- If user data is available, display it -->
+    <div *ngIf="user; else loading">
+        <div>
+            <p>User Email: {{ email }}</p>
+            <!-- <h3>{{ user.name }}</h3>
+            
+            <p>Phone: {{ user.phone }}</p>
+            <p>Address: {{ user.address }}</p> -->
+            <!-- Add more fields as necessary -->
+        </div>
+    </div>
+
+    <!-- Template for loading state -->
+    <ng-template #loading>
+        <p>Loading user details...</p>
+    </ng-template>
+
+    <!-- Template for error state -->
+    <div *ngIf="errorMessage" class="error-message">
+        <p>{{ errorMessage }}</p>
+    </div>
+</div>

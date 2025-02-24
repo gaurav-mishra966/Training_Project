@@ -1,0 +1,10 @@
+<div *ngIf="alert.showAlert" class="alert" [ngClass]="alert.alertType" class="alert" (click)="closeAlert()">
+    <span class="alert-icon" *ngIf="alert.alertType !== 'alert-info'">
+        <ng-container [ngSwitch]="alert.alertType">
+            <span *ngSwitchCase="'alert-success'" style="color: darkseagreen;">✔️</span>
+            <span *ngSwitchCase="'alert-error'">❌</span>
+            <span *ngSwitchCase="'alert-warning'">⚠️</span>
+        </ng-container>
+    </span>
+    <span class="alert-message">{{ alert.alertMessage }}</span>
+</div>

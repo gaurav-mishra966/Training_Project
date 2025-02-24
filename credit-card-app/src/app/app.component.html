@@ -1,0 +1,58 @@
+<!-- <app-alertcomponent *ngIf="showAlert" [message]="alertMessage" [alertType]="alertType" [duration]="alertDuration">
+</app-alertcomponent> -->
+
+<!-- <button (click)="showSuccessAlert()">Show Success Alert</button>
+<button (click)="showErrorAlert()">Show Error Alert</button>
+<button (click)="showWarningAlert()">Show Warning Alert</button>
+<button (click)="showInformationAlert()">Show Information Alert</button> -->
+<app-alertcomponent></app-alertcomponent>
+
+<app-login *ngIf="!isLoggedIn"></app-login>
+<div>
+  <div class="app-container" *ngIf="isLoggedIn">
+    <div [class.dark-mode]="isDarkMode"></div>
+    <app-headercomponent *ngIf="isLoggedIn"></app-headercomponent>
+
+    <div class="main-content-container">
+      <div class="sidebar">
+        <app-sidebarcomponent *ngIf="isLoggedIn"></app-sidebarcomponent>
+      </div>
+
+      <div class="content-area">
+        <!--adding breadcrumb in this to display user current component-->
+        <!-- <div *ngIf="breadcrumbs.length > 0" class="breadcrumbs">
+          <span class="fa fa-home" *ngFor="let breadcrumb of breadcrumbs; let last = last">
+            <a *ngIf="!last" [routerLink]="breadcrumb.url">{{ breadcrumb.label }}</a>
+            <span *ngIf="last"> {{ breadcrumb.label }} </span>
+            <span *ngIf="!last"> &gt; </span>
+          </span>
+        </div> -->
+        <div *ngIf="breadcrumbs.length > 0" class="breadcrumbs">
+          <table>
+            <tr *ngFor="let breadcrumb of breadcrumbs; let last = last">
+              <td *ngIf="!last">
+                <!-- Display icon and link for all but the last breadcrumb -->
+                <a [routerLink]="breadcrumb.url">
+                  <i class="{{ breadcrumb.icon }}"></i> {{ breadcrumb.label }}
+                </a>
+              </td>
+              <td *ngIf="last">
+                <!-- Display the last breadcrumb without link -->
+                <i class="{{ breadcrumb.icon }}"></i> {{ breadcrumb.label }}
+              </td>
+              <td *ngIf="!last"> &gt; </td>
+            </tr>
+          </table>
+        </div>
+        <router-outlet>
+        </router-outlet>
+        <!-- <h1>Welcome to the App</h1>
+      <p>This is the main content area. Feel free to customize it with your own content!</p> -->
+      </div>
+    </div>
+    <div>
+      <app-footercomponent *ngIf="isLoggedIn"></app-footercomponent>
+    </div>
+
+  </div>
+</div>

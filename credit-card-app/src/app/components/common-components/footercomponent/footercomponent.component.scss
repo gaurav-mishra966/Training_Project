@@ -1,0 +1,45 @@
+.footer {
+  background-color: #77aca2;
+  color: white;
+  padding: 20px;
+  text-align: center;
+
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+
+    p {
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .social-icons {
+      a {
+        color: white;
+        margin-left: 15px;
+        text-decoration: none;
+        font-size: 18px;
+      }
+
+      a:hover {
+        color: white;
+        background-color: yellowgreen;
+        cursor: pointer;
+        // color: #f39c12;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .social-icons {
+    margin-top: 10px;
+  }
+}

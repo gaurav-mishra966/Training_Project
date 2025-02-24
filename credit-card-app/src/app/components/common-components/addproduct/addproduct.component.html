@@ -1,0 +1,53 @@
+<div class="container">
+    <h2>{{id?'Edit Product' : 'Add Product'}}</h2>
+    <button class="btn btn-outline-warning mb-3" (click)="goBack()">← Product List</button>
+
+    <form #productForm="ngForm" (ngSubmit)="createProduct(productForm)" novalidate>
+        <!-- Product Name -->
+        <div class="form-group">
+            <div class="input-group flex-nowrap mb-3">
+                <span class="input-group-text">Product Name</span>
+                <input type="text" class="form-control" [(ngModel)]="productName" name="productName" required
+                    placeholder="Enter Product Name" autocomplete="off" />
+            </div>
+
+        </div>
+
+        <!-- Product Description -->
+        <div class="form-group">
+            <div class="input-group flex-nowrap mb-3">
+                <span class="input-group-text">Product Description</span>
+                <input type="text" class="form-control" [(ngModel)]="productDescription" name="productDescription"
+                    required placeholder="Enter Product Description" autocomplete="off" />
+            </div>
+
+        </div>
+
+        <!-- Product Fee -->
+        <div class="form-group">
+            <div class="input-group flex-nowrap mb-3">
+                <span class="input-group-text">Product Fee</span>
+                <input type="number" class="form-control" [(ngModel)]="productFee" name="productFee" required
+                    placeholder="Enter Product Fee" autocomplete="off" />
+            </div>
+
+        </div>
+
+        <!-- Product Image -->
+        <div class="form-group">
+            <div class="input-group flex-nowrap mb-3">
+                <span class="input-group-text">Product Image URL</span>
+                <input type="text" class="form-control" [(ngModel)]="image" name="image"
+                    placeholder="Enter Product Image URL" autocomplete="off" />
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="form-group">
+            <button type="submit" class="btn btn-outline-success" [disabled]="productForm.invalid">
+                {{ id ? 'Update' : 'Save' }}
+                <!-- Submit -->
+            </button>
+        </div>
+    </form>
+</div>

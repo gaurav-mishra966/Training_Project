@@ -1,0 +1,324 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Main App Container */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Full viewport height */
+}
+
+/* Header Styling */
+header {
+  background-color: #333;
+  color: white;
+  padding: 15px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Main Content Container */
+.main-content-container {
+  display: flex;
+  flex-grow: 1; /* Take up all available space between header and footer */
+  //   padding: 20px;
+  gap: 10px; /* Add space between sidebar and content */
+  overflow: hidden;
+  flex-direction: row; /* Sidebar and content will be side by side */
+}
+
+/* Sidebar Styling */
+.sidebar {
+  width: 250px;
+  background-color: #468189;
+  color: white;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  transition: width 0.3s ease;
+}
+
+.sidebar.collapsed {
+  width: 60px; /* Sidebar collapses to 60px width */
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.toggle-btn {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.sidebar-title {
+  font-size: 20px;
+  font-weight: bold;
+  display: inline-block;
+  margin-left: 10px;
+}
+
+/* Sidebar Navigation Links */
+.nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.nav li {
+  padding: 10px 0;
+}
+
+.nav a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  font-size: 18px;
+  padding: 8px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.nav a:hover {
+  background-color: #9dbebb;
+}
+
+/*Bread Crumb*/
+.breadcrumbs {
+  width: 100%;
+  font-size: 20px;
+  margin: 10px 0;
+}
+
+.breadcrumbs a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+.breadcrumbs a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumbs span {
+  color: #333;
+}
+
+/* Content area */
+.content-area {
+  flex-grow: 1;
+  padding: 20px;
+  background-color: #ecf0f1;
+  color: #2c3e50;
+  overflow-y: auto; /* Allow scrolling if content overflows */
+}
+
+.content-area h1 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.content-area p {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+/* Footer Styling */
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  font-size: 14px;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .main-content-container {
+    flex-direction: column; /* Stack sidebar and content on smaller screens */
+  }
+
+  .sidebar {
+    width: 100%; /* Full width on small screens */
+    padding: 10px;
+  }
+
+  .sidebar.collapsed {
+    width: 60px;
+  }
+
+  .content-area {
+    padding: 15px;
+  }
+
+  .toggle-btn {
+    font-size: 20px; /* Adjust the size of the toggle button */
+  }
+}
+
+/* styles.css */
+
+/* Default light mode styles */
+// body {
+//   background-color: #f4f4f4;
+//   color: #333;
+// }
+
+/* Dark Mode styles */
+body.dark-mode {
+  background-color: #121212;
+  color: #f4f4f4;
+}
+
+// .content-area {
+//   background-color: #333;
+//   color: #f4f4f4;
+// }
+
+button {
+  background-color: #444;
+  color: #f4f4f4;
+}
+
+.dark-mode-toggle {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: inherit;
+}
+
+body.dark-mode .dark-mode-toggle {
+  color: #f4f4f4;
+}
+
+/* Sidebar Styles */
+.sidebar {
+  background-color: #468189;
+  color: #333;
+}
+
+.sidebar.dark-mode {
+  background-color: #333;
+  color: #f4f4f4;
+}
+
+/* Navigation Links */
+.nav a {
+  color: #333;
+}
+
+body.dark-mode .nav a {
+  color: #f4f4f4;
+}
+
+/* Sidebar Header */
+.sidebar-header {
+  background-color: #e3e3e3;
+}
+
+body.dark-mode .sidebar-header {
+  background-color: #444;
+}
+
+/* Button Styles */
+button {
+  background-color: #fff;
+  color: #333;
+}
+
+body.dark-mode button {
+  background-color: #444;
+  color: #f4f4f4;
+}
+
+/* Dark Mode Toggle Button */
+.dark-mode-toggle {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: inherit;
+}
+
+/* Default light mode styles */
+// body {
+//   background-color: #f4f4f4;
+//   color: #333;
+// }
+
+// .sidebar {
+//   background-color: #f4f4f4;
+//   color: #333;
+// }
+
+// .nav a {
+//   color: #333;
+// }
+
+// .sidebar-header {
+//   background-color: #e3e3e3;
+// }
+
+// button {
+//   background-color: #fff;
+//   color: #333;
+// }
+
+// /* Dark Mode styles */
+// body.dark-mode {
+//   background-color: #121212;
+//   color: #f4f4f4;
+// }
+
+// .sidebar.dark-mode {
+//   background-color: #333;
+//   color: #f4f4f4;
+// }
+
+// .nav a {
+//   color: #333;
+// }
+
+// body.dark-mode .nav a {
+//   color: #f4f4f4;
+// }
+
+// .sidebar-header {
+//   background-color: #444;
+// }
+
+// body.dark-mode .sidebar-header {
+//   background-color: #222;
+// }
+
+// button {
+//   background-color: #fff;
+//   color: #333;
+// }
+
+// body.dark-mode button {
+//   background-color: #444;
+//   color: #f4f4f4;
+// }
+
+// /* Dark Mode Toggle Button Styles */
+// .dark-mode-toggle {
+//   background: none;
+//   border: none;
+//   font-size: 20px;
+//   cursor: pointer;
+//   color: inherit;
+// }
+
+// body.dark-mode .dark-mode-toggle {
+//   color: #f4f4f4;
+// }

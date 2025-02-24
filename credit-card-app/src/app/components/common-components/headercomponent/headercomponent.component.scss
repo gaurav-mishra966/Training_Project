@@ -1,0 +1,97 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: #77aca2; //associated color in this palet #34252f  #519872 #3B5249 #BEC5AD #A4B494
+  //   #92828D #CEB5A7 #EBEFBF #EAF7CF
+  color: white;
+
+  .logo-container {
+    display: flex;
+    align-items: center;
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      margin-right: 10px;
+    }
+
+    .app-name {
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .rounded-image {
+      width: 100px;
+      height: 80px;
+      border-radius: 50%; // this make circle
+      overflow: hidden; //hiding image overflow
+      object-position: center; // you can custom the position
+    }
+  }
+  .status-dot-admin {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: yellow; /* Dark green color */
+    border-radius: 50%; /* Makes the dot circular */
+    margin-right: 10px; /* Space between the dot and the username */
+    vertical-align: middle; /* Aligns the dot with the text */
+  }
+
+  .status-dot-user {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: greenyellow; /* Dark green color */
+    border-radius: 50%; /* Makes the dot circular */
+    margin-right: 10px; /* Space between the dot and the username */
+    vertical-align: middle; /* Aligns the dot with the text */
+  }
+
+  img {
+    border-radius: 25%;
+    height: 80px;
+    width: 50px;
+  }
+
+  .nav {
+    ul {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      margin-left: 20px;
+    }
+
+    a {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    a:hover {
+      color: #92828d;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav {
+    margin-top: 10px;
+    width: 100%;
+    text-align: center;
+  }
+
+  li {
+    margin: 5px 0;
+  }
+}

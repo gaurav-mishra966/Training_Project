@@ -1,0 +1,53 @@
+/* login.component.css */
+
+/* Full-page background */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: url("/assets/computer.png") no-repeat center center fixed;
+  background-size: cover;
+}
+
+/* Centering login form */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  //   background: rgba(0, 0, 0, 0.5); /* Optional dark overlay */
+  //   background-color: #ffcc70;
+  background-color: #468189;
+}
+
+/* The login wrapper */
+.login-wrapper {
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Card styling */
+.login-card {
+  background-color: rgba(255, 255, 255, 0.8); /* Slight transparency for card */
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.input-group-text {
+  width: 120px;
+  text-align: left;
+}
+
+.btn {
+  width: 100%;
+}

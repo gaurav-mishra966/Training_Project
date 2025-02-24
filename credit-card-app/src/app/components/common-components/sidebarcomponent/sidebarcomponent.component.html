@@ -1,0 +1,56 @@
+<div class="sidebar" [class.collapsed]="isCollapsed" [class.dark-mode]="isDarkMode">
+    <div class="sidebar-header">
+        <button (click)="toggleSidebar()" class="toggle-btn">
+            <span *ngIf="isCollapsed">☰</span>
+            <span *ngIf="!isCollapsed">×</span>
+        </button>
+        <p class="sidebar-title">Menu</p>
+        <!-- <button (click)="toggleDarkMode()" class="dark-mode-toggle">
+            🌙
+        </button> -->
+    </div>
+
+    <nav class="nav" *ngIf="!isCollapsed">
+        <ul>
+            <!-- Common for all users -->
+            <!-- <li><a routerLink="home" routerLinkActive="active" ariaCurrentWhenActive="page">Home</a></li> -->
+
+            <!-- Conditional items based on user role -->
+            <ng-container *ngIf="userRole === 'admin'">
+                <li><a routerLink="/admin-dashboard" routerLinkActive="active">Admin Dashboard</a></li>
+                <li><a routerLink="/user-management">User Management</a></li>
+                <li><a routerLink="/products" routerLinkActive="active" ariaCurrentWhenActive="page">Products</a></li>
+                <li><a routerLink="/services" routerLinkActive="active" ariaCurrentWhenActive="page">Services</a></li>
+                <li><a routerLink="/settings" routerLinkActive="active">Settings</a></li>
+                <li><a routerLink="/profile" routerLinkActive="active">Profile</a></li>
+            </ng-container>
+
+            <ng-container *ngIf="userRole === 'user'">
+                <li><a routerLink="/products" routerLinkActive="active" ariaCurrentWhenActive="page">Products</a></li>
+                <li><a routerLink="/services" routerLinkActive="active" ariaCurrentWhenActive="page">Services</a></li>
+                <li><a routerLink="/user-dashboard" routerLinkActive="active">User Dashboard</a></li>
+                <li><a routerLink="/my-orders" routerLinkActive="active">My Orders</a></li>
+                <li><a routerLink="/settings" routerLinkActive="active">Settings</a></li>
+                <li><a routerLink="/profile" routerLinkActive="active">Profile</a></li>
+            </ng-container>
+
+            <ng-container *ngIf="userRole === 'guest'">
+                <!-- <li><a routerLink="/login" routerLinkActive="active">Login</a></li> -->
+                <li><a routerLink="/signup" routerLinkActive="active">Sign Up</a></li>
+                <li><a routerLink="/products" routerLinkActive="active">Product</a></li>
+            </ng-container>
+
+            <!-- Always available for everyone -->
+
+            <!-- <button  class="btn btn-outline-danger" (click)="logout()">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button> -->
+            <li><a routerLink="/enquiry" routerLinkActive="active" ariaCurrentWhenActive="page">Enquiry</a></li>
+            <li class="logout">
+                <a *ngIf="!isLoggedOut" (click)="logout()" class="btn btn-outline-danger">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>

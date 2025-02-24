@@ -1,0 +1,79 @@
+<div class="dashboard-container">
+    <!-- <app-alertcomponent *ngIf="showAlert" [message]="alertMessage" [alertType]="alertType" [duration]="alertDuration">
+    </app-alertcomponent> -->
+
+    <!-- Header Section -->
+    <div class="header">
+        <h2 class="section-title">Welcome to the Admin Dashboard</h2>
+        <p>Get an overview of the system's performance, revenue, and user activity.</p>
+    </div>
+
+    <!-- Dashboard Cards Section -->
+    <div class="dashboard-cards">
+        <div class="dashboard-card">
+            <h3 class="section-title">Total Revenue</h3>
+            <p>Rs 1,50,000</p>
+            <button class="btn btn-info" (click)="toggleChart('revenue')">Toggle Revenue Chart</button>
+        </div>
+        <div class="dashboard-card">
+            <h3 class="section-title">Active Users</h3>
+            <p>300</p>
+            <button class="btn btn-info" (click)="toggleChart('userActivity')">Toggle User Activity Chart</button>
+        </div>
+        <div class="dashboard-card">
+            <h3 class="section-title">New Sign-ups</h3>
+            <p>50</p>
+            <button class="btn btn-info" (click)="toggleChart('paymentDistribution')">Toggle Payment
+                Distribution
+                Chart</button>
+        </div>
+    </div>
+
+    <!-- Analytics Charts Section -->
+    <div class="charts">
+        <div *ngIf="chartVisible.revenue" class="chart-container">
+            <h3>Revenue Growth (Monthly)</h3>
+            <canvas baseChart [datasets]="barChartData.datasets" [labels]="barChartLabels" [options]="barChartOptions">
+            </canvas>
+        </div>
+
+        <div *ngIf="chartVisible.userActivity" class="chart-container">
+            <h3>User Activity (Weekly)</h3>
+            <canvas baseChart [datasets]="lineChartData.datasets" [labels]="lineChartLabels"
+                [options]="lineChartOptions">
+            </canvas>
+        </div>
+
+        <div *ngIf="chartVisible.paymentDistribution" class="chart-container">
+            <h3>Payment Distribution</h3>
+            <!-- <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType">
+            </canvas> -->
+        </div>
+    </div>
+
+    <!-- User Management Section -->
+    <div class="user-management">
+        <app-user-management></app-user-management>
+    </div>
+
+    <!-- Recent Activities Section -->
+    <div class="recent-activity">
+        <h3 class="section-title">Recent Activities</h3>
+        <ul class="table">
+            <li [ngClass]="'payment-done'">Payment Done to BookMyShow (Rs 5000).</li>
+            <li [ngClass]="'payment-done'">Payment Done to MakemyTrip (Rs 7000).</li>
+            <li [ngClass]="'payment-received'">Payment Received from IRCTC (Rs 3000).</li>
+        </ul>
+    </div>
+
+
+
+
+    <!-- Settings Section -->
+    <!-- <div class="settings">
+        <app-adminsettings></app-adminsettings>
+        < <h3>Settings</h3>
+        <button class="btn btn-primary">Change Password</button>
+        <button class="btn btn-info">Update System Configurations</button> 
+    </div> -->
+</div>

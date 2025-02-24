@@ -1,0 +1,144 @@
+.sidebar {
+  //   width: 250px;
+  //   height: 100vh;
+  background-color: #468189;
+  color: white;
+  position: relative;
+  top: 0px;
+  left: 0;
+  transition: width 0.3s ease-in-out;
+  overflow: hidden;
+}
+
+.sidebar.collapsed {
+  width: 60px; /* Smaller width when collapsed */
+}
+
+.sidebar-header {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sidebar-title {
+  font-size: 20px;
+  font-weight: bold;
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.toggle-btn {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 10px;
+}
+
+.nav li {
+  padding: 10px;
+}
+
+.nav a {
+  color: white;
+  text-decoration: none;
+  display: block;
+}
+
+.nav li a:hover {
+  background-color: #468189;
+}
+
+.logout {
+  position: relative; /* Ensure it behaves as expected for hover states */
+}
+
+// .logout a {
+//   transition: background-color 0.3s ease, color 0.3s ease;
+// }
+
+.logout:hover a {
+  background-color: lightcoral;
+}
+
+.logout:hover {
+  background-color: rgba(220, 53, 69, 0.1); /* Slight red background */
+  cursor: pointer; /* Change cursor to indicate interactivity */
+}
+
+.nav li a:active {
+  color: #fd7e14;
+}
+
+/* Hide the navigation when the sidebar is collapsed */
+.nav {
+  display: block;
+}
+
+@media screen and (max-width: 768px) {
+  .sidebar {
+    width: 100%; /* Full width on smaller screens */
+  }
+
+  .sidebar.collapsed {
+    width: 60px; /* Smaller width when collapsed */
+  }
+
+  .toggle-btn {
+    font-size: 20px; /* Adjust toggle button size */
+  }
+}
+
+//Dark mode styling
+/* Dark Mode styles */
+/* Default light mode styles */
+// .sidebar {
+//   background-color: #f4f4f4;
+//   color: #333;
+// }
+
+// .nav a {
+//   color: #333;
+// }
+
+// .sidebar-header {
+//   background-color: #e3e3e3;
+// }
+
+/* Dark Mode styles */
+.sidebar.dark-mode {
+  background-color: #333;
+  color: #f4f4f4;
+}
+
+.sidebar.dark-mode .nav a {
+  color: #f4f4f4;
+}
+
+.sidebar.dark-mode .nav a:active {
+  color: red;
+}
+
+.sidebar.dark-mode .sidebar-header {
+  background-color: #444;
+}
+
+.sidebar.dark-mode .logout a {
+  color: #f4f4f4;
+}
+
+/* Dark Mode Toggle Button */
+.dark-mode-toggle {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: inherit;
+}

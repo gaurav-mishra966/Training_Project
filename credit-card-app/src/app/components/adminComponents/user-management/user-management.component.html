@@ -1,0 +1,74 @@
+<!-- User Management Section -->
+<div class="user-management">
+    <h3 class="section-title">User Management</h3>
+
+    <!-- Error Message -->
+    <div *ngIf="errorMessage" class="alert alert-danger error-alert">
+        {{ errorMessage }}
+    </div>
+
+    <!-- Loading Spinner -->
+    <div *ngIf="loading" class="loading-spinner">
+        <div class="spinner"></div> Loading...
+    </div>
+
+    <!-- Filter/Search Box -->
+    <div class="search-box">
+        <input type="text" placeholder="Search by username..." [(ngModel)]="searchQuery" (input)="filterUsers()"
+            class="form-control search-input" />
+    </div>
+
+    <!-- No Results Message -->
+    <div *ngIf="filteredUsers.length === 0" class="no-results">
+        <p>No users found.</p>
+    </div>
+
+    <!-- User Table -->
+    <div *ngIf="users.length > 0" class="user-table">
+        <h3>Total Users: {{ totalCount }}</h3>
+        <table class="table table-bordered mt-3">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Phone Number</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of filteredUsers">
+                    <td [ngClass]="{'highlight': isSearchMatch(user.username)}">{{ user.username }}</td>
+                    <td>{{ user.phoneNumber }}</td>
+                    <td
+                        [ngClass]="{'text-success': user.status === 'Active', 'text-danger': user.status === 'Inactive'}">
+                        {{ user.status }}
+                    </td>
+                    <td>
+                        <button [ngClass]="{
+                                'btn-warning': user.status === 'Active',
+                                'btn-success': user.status === 'Inactive',
+                                'btn-danger': user.status === 'Suspended',
+                                'btn-red': user.status === 'Active' && user.username === suspendedUser
+                            }" class="btn btn-sm action-btn" (click)="handleUserAction(user.username, user.status)">
+                            {{ user.status === 'Active' ? 'Suspend' : (user.status === 'Suspended' ? 'Activate' :
+                            'Suspend') }}
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Pagination Controls -->
+        <div class="pagination-controls">
+            <button (click)="changePage('prev')" [disabled]="currentPage === 1"
+                class="btn btn-secondary pagination-btn">
+                Previous
+            </button>
+            <span>Page {{ currentPage }} of {{ totalPages }}</span>
+            <button (click)="changePage('next')" [disabled]="currentPage === totalPages"
+                class="btn btn-secondary pagination-btn">
+                Next
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,91 @@
+<div class="container" *ngIf="userRole==='user'">
+    <!-- <h1>Products offered</h1> -->
+    <div class="card-container">
+        <div class="card" *ngFor="let card of cards">
+            <!-- <img [src]="card.image" alt="{{card.name}}" class="card-image"> -->
+            <div class="credit-card">
+                <div class="credit-card__inner__front">
+                    <div class="credit-card__header">
+                        <!-- Chip Section -->
+                        <div class="credit-card__header__chip">
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <!-- Credit Card Logo -->
+                        <div class="credit-card__header__logo">
+                            <!-- <img [src]="card.logo" alt="{{card.name}}" /> -->
+                        </div>
+                    </div>
+                    <div class="credit-card__number">
+                        <span>{{ 4242 }}</span>
+                        <span>{{ 4242 }}</span>
+                        <span>{{ 4242 }}</span>
+                        <span>{{ 4242 }}</span>
+
+                    </div>
+                    <div class="credit-card__info">
+                        <div class="credit-card__info__name">
+                            <span>Card Holder</span>
+                            <span>{{ 'John Doe' }}</span>
+                        </div>
+                        <div class="credit-card__info__date">
+                            <span>Expires</span>
+                            <span>{{ '12/30' }}</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="card-details">
+                <h3>{{ card.name }}</h3>
+                <p>{{ card.description }}</p>
+                <p class="price">{{ card.price }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-admin" *ngIf="userRole==='admin'">
+
+    <div class="card mt-3 d-flex">
+        <div class="card-header card text-bg-dark mb-3">
+            <h3 class="mt-3 justify-content">Product's List</h3>
+            <p class="card-text"></p>
+
+            <div class="d-flex justify-content-end">
+                <button class="btn btn-success btn-md ml-auto" (click)="redirectToAddCategory()"> Add Products</button>
+            </div>
+        </div>
+        <div class="card-body">
+            <table class="table table-admin table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Product</th>
+                        <th>Description</th>
+                        <th>Fee's</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let card of cards;let i=index">
+                        <td>{{ i+1}}</td>
+                        <!-- <td>{{cards.id}}</td> -->
+                        <td>{{card.name}}</td>
+                        <td>{{ card.description }}</td>
+                        <td>{{ card.price |currency}}</td>
+                        <td>
+                            <button type="button" class="btn btn-outline-info btn-sm"
+                                (click)="onEdit(i+1)">Edit</button>&nbsp;
+                            <!-- (click)="onDelete()" -->
+                            <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal"
+                                data-bs-target="#staticBackdropDelete"
+                                (click)="performDeletion(productId+1)">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>

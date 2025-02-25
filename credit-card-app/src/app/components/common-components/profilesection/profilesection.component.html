@@ -1,25 +1,41 @@
 <div class="profile-container">
-    <h2>User Profile</h2>
+    <h2 class="text-center">User Profile</h2>
 
     <!-- If user data is available, display it -->
-    <div *ngIf="user; else loading">
-        <div>
-            <p>User Email: {{ email }}</p>
-            <!-- <h3>{{ user.name }}</h3>
-            
-            <p>Phone: {{ user.phone }}</p>
-            <p>Address: {{ user.address }}</p> -->
-            <!-- Add more fields as necessary -->
+    <p-card *ngIf="user; else loading" class="p-shadow-2">
+        <ng-template pTemplate="header">
+            <div class="p-d-flex p-jc-between p-ai-center">
+                <p-avatar *ngIf="profilePicture" [image]="profilePicture" shape="circle" size="large" class="p-mr-3">
+                </p-avatar>
+                <h3>{{ name || 'No Name Provided' }}</h3>
+            </div>
+        </ng-template>
+
+        <div class="profile-details">
+            <div class="p-d-flex p-ai-center">
+                <p><strong>Email: </strong>{{ email }}</p>
+
+            </div>
+
+            <div class="user-info">
+                <p><strong>Phone: </strong>{{ phone || 'Not Provided' }}</p>
+                <p><strong>Address: </strong>{{ address || 'Not Provided' }}</p>
+            </div>
         </div>
-    </div>
+
+        <p-footer>
+            <button pButton label="Edit Profile" icon="pi pi-pencil" (click)="editProfile()"></button>
+        </p-footer>
+    </p-card>
 
     <!-- Template for loading state -->
     <ng-template #loading>
-        <p>Loading user details...</p>
+        <p-progressSpinner styleClass="p-d-block p-mx-auto"></p-progressSpinner>
+        <p class="text-center">Loading user details...</p>
     </ng-template>
 
     <!-- Template for error state -->
-    <div *ngIf="errorMessage" class="error-message">
-        <p>{{ errorMessage }}</p>
+    <div *ngIf="errorMessage" class="error-message p-shadow-2">
+        <p class="p-text-center p-mt-2 p-text-danger">{{ errorMessage }}</p>
     </div>
 </div>

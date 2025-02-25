@@ -5,7 +5,7 @@ import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
 import { AlertService } from '../../../services/alert.service';
 import { AlertcomponentComponent } from '../alertcomponent/alertcomponent.component';
-
+import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-login',
   imports: [FormsModule, CommonModule, AlertcomponentComponent],
@@ -28,7 +28,8 @@ export class LoginComponent {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private cookieService: CookieService
   ) {}
 
   login() {
@@ -43,6 +44,10 @@ export class LoginComponent {
           this.authService.setLoggedIn(true);
           this.isLoggedIn = true;
           this.errorMessage = '';
+
+          //implementing cookie to store client local info and apply setting to ui
+          const userLocale = navigator.language || 'en-US';
+          this.cookieService.set('userLocale', userLocale);
 
           //implementing roles based filtering
           const roles = response.roles;

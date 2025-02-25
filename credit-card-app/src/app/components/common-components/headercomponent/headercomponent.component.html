@@ -1,6 +1,7 @@
 <header class="header">
     <div class="logo-container">
-        <img class="rounded-image" src="" width="80px" height="50px">
+        <p-avatar *ngIf="logo" [image]="logo" shape="circle" size="large" class="p-mr-3">
+        </p-avatar>
         <!-- <i class="fa fa-home logo-icon"></i> -->
         <span class="app-name">Credit Card Management</span>
     </div>
@@ -8,7 +9,9 @@
 
         <span *ngIf="userRole === 'admin'" class="status-dot-admin"></span>
         <span *ngIf="userRole === 'user'" class="status-dot-user"></span>
-        <img src="" alt=" Welcome {{username}} ">&nbsp;
+        <p-avatar *ngIf="profilePicture" [image]="profilePicture" shape="circle" size="large" class="p-mr-3">
+        </p-avatar>
+        <span>Welcome | </span>
         <span>User Role: &nbsp;{{userRole}}</span><br>
         <!-- <button (click)="toggleDarkMode()" class="dark-mode-toggle">
             🌙

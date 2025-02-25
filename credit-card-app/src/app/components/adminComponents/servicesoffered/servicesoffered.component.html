@@ -1,0 +1,69 @@
+<div class="container">
+    <h2>Services Management</h2>
+    <!-- Button to add new product -->
+    <button pButton label="Add Service" variant="text" [raised]="true" (click)="openNew()"
+        class="p-button-success mb-3"></button>
+
+
+    <!-- Table displaying the products -->
+    <p-table [value]="servicesOfferd" [paginator]="true" [rows]="5" [responsive]="true">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Product Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-service>
+            <tr>
+                <td>{{ service.serviceName }}</td>
+                <td>{{ service.serviceDescription}}</td>
+                <td>${{ service.serviceCharges }}</td>
+                <td>
+
+                    <p-button label="Info" variant="outlined" [raised]="true" severity="info"
+                        (onClick)="deleteService(service.id)" />
+                    &nbsp;
+
+                    <p-button label="Danger" variant="text" [raised]="true" severity="danger"
+                        (onClick)="deleteService(service.id)" />
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+    <br>
+
+
+    <!-- Dialog for adding/editing product -->
+    <p-dialog [(visible)]="displayDialog" [modal]="true" [closable]="false" [style]="{width: '50vw'}">
+        <p-header>{{ isEditing ? 'Edit Product' : 'Add New Product' }}</p-header>
+
+        <div class="p-fluid">
+            <div class="p-field">
+                <label for="name">Product Name</label>
+                <!-- <input id="name" type="text" pInputText [(ngModel)]="servicesOfferd" required /> -->
+            </div>
+
+            <div class="p-field">
+                <label for="description">Description</label>
+                <!-- <input id="description" type="text" pInputText [(ngModel)]="servicesOfferd" required /> -->
+            </div>
+
+            <div class="p-field">
+                <label for="price">Price</label>
+                <!-- <input id="price" type="number" pInputText [(ngModel)]="servicesOfferd" required /> -->
+            </div>
+
+            <div class="p-field">
+                <label for="imageUrl">Image URL</label>
+                <!-- <input id="imageUrl" type="text" pInputText [(ngModel)]="servicesOfferd" /> -->
+            </div>
+        </div>
+
+        <p-footer>
+            <button pButton label="Cancel" icon="pi pi-times" (click)="cancel()"></button>
+            <button pButton label="Save" icon="pi pi-check" (click)="InsertService()"></button>
+        </p-footer>
+    </p-dialog>
+</div>

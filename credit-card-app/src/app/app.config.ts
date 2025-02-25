@@ -12,12 +12,14 @@ import { CookieService } from 'ngx-cookie-service';
 import { providePrimeNG } from 'primeng/config';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import Aura from '@primeng/themes/aura';
+import { PrimeIcons } from 'primeng/api';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     AuthService,
     CookieService,
     provideAnimationsAsync(),
+    PrimeIcons,
     providePrimeNG({ theme: { preset: Aura, options: {} } }),
     //adding charting function to the app
     provideCharts(withDefaultRegisterables()),

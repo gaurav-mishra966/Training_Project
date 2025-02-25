@@ -6,6 +6,7 @@ import { AuthService } from '../../../services/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { productService } from '../../../services/product.service';
 import { Products } from '../../../models/products';
+import { AlertService } from '../../../services/alert.service';
 
 @Component({
   selector: 'app-products',
@@ -16,13 +17,21 @@ import { Products } from '../../../models/products';
 export class ProductsComponent implements OnInit {
   userRole: string = 'guest';
   productId: number = 0;
-  product: Products = { id: 0, name: '', description: '', price: 0, image: '' };
+  product: Products = {
+    id: 0,
+    name: '',
+    description: '',
+    price: 0,
+    image: '',
+    imageUrl: '',
+  };
   cards: Products[] = [];
   count: number = 0;
   constructor(
     private authService: AuthService,
     private router: Router,
-    private productService: productService
+    private productService: productService,
+    private alertservice: AlertService
   ) {}
 
   ngOnInit(): void {
@@ -57,9 +66,19 @@ export class ProductsComponent implements OnInit {
   }
 
   performDeletion(id: number): void {
-    this.productService.deleteProduct(this.productId).subscribe({
-      next: () => {
-        console.log('Product deleted successfully');
+    this.productService.deleteProduct(this.productId + 1).subscribe({
+      next: (response) => {
+        console.log(response);
+        if (Array.isArray(response[0])) {
+          this.alertservice.showAlert(response, 'alert-success', true);
+        } else {
+          this.alertservice.showAlert(
+            `Expected an array, but got:/${response[0]}`,
+            'alert-warning',
+            true
+          ); //response
+        }
+
         // Refresh the product list after deletion
         this.productService.getAllProducts().subscribe((response) => {
           if (Array.isArray(response)) {
@@ -68,8 +87,12 @@ export class ProductsComponent implements OnInit {
         });
       },
       error: (error) => {
-        console.error('Error deleting product:', error);
-        alert('Failed to delete product. Please try again.');
+        console.error('Failed to delete product:', error);
+        this.alertservice.showAlert(
+          'Error deleting product. Please try again.',
+          'alert-warning',
+          true
+        );
       },
     });
   }

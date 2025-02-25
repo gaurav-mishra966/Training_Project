@@ -33,47 +33,59 @@ export class LoginComponent {
   ) {}
 
   login() {
-    this.authService.login(this.email, this.password).subscribe(
-      (response) => {
-        const sessoinToken = sessionStorage.setItem(
-          'authToken',
-          response.token
-        );
-        if (response && response.token) {
-          // If the response is successful and contains a token
-          this.authService.setLoggedIn(true);
-          this.isLoggedIn = true;
-          this.errorMessage = '';
+    this.errorMessage = '';
+    try {
+      this.authService.login(this.email, this.password).subscribe(
+        (response) => {
+          const sessoinToken = sessionStorage.setItem(
+            'authToken',
+            response.token
+          );
+          const profileImage = sessionStorage.setItem(
+            'profilePicture',
+            'https://i.imgur.com/LDOO4Qs.jpg'
+          );
+          const productlogoImage = sessionStorage.setItem(
+            'logoPicture',
+            'https://fakestoreapi.com/icons/logo.png'
+          );
+          if (response && response.token) {
+            // If the response is successful and contains a token
+            this.authService.setLoggedIn(true);
+            this.isLoggedIn = true;
 
-          //implementing cookie to store client local info and apply setting to ui
-          const userLocale = navigator.language || 'en-US';
-          this.cookieService.set('userLocale', userLocale);
+            //implementing cookie to store client local info and apply setting to ui
+            const userLocale = navigator.language || 'en-US';
+            this.cookieService.set('userLocale', userLocale);
 
-          //implementing roles based filtering
-          const roles = response.roles;
-          this.authService.setUserName(response.username);
-          this.authService.setUserEmail(response.userEmail);
+            //implementing roles based filtering
+            const roles = response.roles;
+            this.authService.setUserName(response.username);
+            this.authService.setUserEmail(response.userEmail);
 
-          // Navigate based on user type
-          if (roles.includes('admin')) {
-            this.router.navigate(['/admin-dashboard']);
-          } else if (roles.includes('user')) {
-            this.router.navigate(['/user-dashboard']);
-          } else if (roles.includes('guest')) {
-            this.router.navigate(['/home']);
+            // Navigate based on user type
+            if (roles.includes('admin')) {
+              this.router.navigate(['/admin-dashboard']);
+            } else if (roles.includes('user')) {
+              this.router.navigate(['/user-dashboard']);
+            } else if (roles.includes('guest')) {
+              this.router.navigate(['/home']);
+            } else {
+              this.showErrorAlert();
+            }
+            this.showSuccessAlert();
+            this.authService.setUserRole(roles);
           } else {
-            this.showErrorAlert();
+            this.handleInvalidLogin(this.errorMessage);
           }
-          this.showSuccessAlert();
-          this.authService.setUserRole(roles);
-        } else {
-          this.handleInvalidLogin(this.errorMessage);
+        },
+        (error) => {
+          this.alertService.showAlert(error.message, 'alert-error', true);
         }
-      },
-      (error) => {
-        this.handleInvalidLogin(error.message);
-      }
-    );
+      );
+    } catch {
+      this.alertService.showAlert(this.errorMessage, 'alert-error', true);
+    }
   }
 
   handleInvalidLogin(message: string) {

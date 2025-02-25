@@ -12,6 +12,8 @@ import { AdminsettingsComponent } from './components/adminComponents/adminsettin
 import { ProfilesectionComponent } from './components/common-components/profilesection/profilesection.component';
 import { NewpageUnderconstructionComponent } from './components/common-components/newpage-underconstruction/newpage-underconstruction.component';
 import { UpdatepasswordComponent } from './components/common-components/updatepassword/updatepassword.component';
+import { ServicesofferedComponent } from './components/adminComponents/servicesoffered/servicesoffered.component';
+import { AddservicesofferedComponent } from './components/adminComponents/addservicesoffered/addservicesoffered.component';
 
 export const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -26,10 +28,18 @@ export const routes: Routes = [
   { path: 'settings', component: AdminsettingsComponent },
   { path: 'user-management', component: UserManagementComponent },
   { path: 'user-dashboard', component: HomecomponentComponent },
-  { path: 'services', component: NewpageUnderconstructionComponent },
+
   { path: 'products', component: ProductsComponent },
   { path: 'changePassword', component: UpdatepasswordComponent },
+
   //Product Section
   { path: 'add-product', component: AddproductComponent },
   { path: 'edit-Product/:id', component: AddproductComponent },
+
+  //Services Section
+  { path: 'services', component: ServicesofferedComponent },
+  { path: 'edit-service/:id', component: AddservicesofferedComponent },
+
+  //Common Sections
+  { path: 'enquiry', component: NewpageUnderconstructionComponent },
 ];

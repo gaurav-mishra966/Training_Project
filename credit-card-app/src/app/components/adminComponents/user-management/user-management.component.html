@@ -32,6 +32,7 @@
                     <th>Username</th>
                     <th>Phone Number</th>
                     <th>Status</th>
+                    <th>Avtar</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -43,6 +44,9 @@
                         [ngClass]="{'text-success': user.status === 'Active', 'text-danger': user.status === 'Inactive'}">
                         {{ user.status }}
                     </td>
+                    <td><p-avatar *ngIf="profilePicture" [image]="profilePicture" shape="circle" size="large"
+                            class="p-mr-3">
+                        </p-avatar></td>
                     <td>
                         <button [ngClass]="{
                                 'btn-warning': user.status === 'Active',

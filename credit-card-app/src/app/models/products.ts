@@ -13,6 +13,7 @@ export class Products {
     public name: string = '',
     public description: string = '',
     public price: number = 0,
-    public image: string = ''
+    public image: string = '',
+    public imageUrl: string = ''
   ) {}
 }

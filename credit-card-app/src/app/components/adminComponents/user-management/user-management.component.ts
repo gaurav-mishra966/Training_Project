@@ -6,7 +6,7 @@ import { userService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-user-management',
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, AvatarModule],
   templateUrl: './user-management.component.html',
   styleUrl: './user-management.component.scss',
 })
@@ -17,7 +17,7 @@ export class UserManagementComponent implements OnInit {
   loading: boolean = true;
   errorMessage: string = '';
   suspendedUser: string = '';
-
+  profilePicture = sessionStorage.getItem('profilePicture'); //'https://i.imgur.com/LDOO4Qs.jpg';
   constructor(private userService: userService) {}
 
   ngOnInit(): void {
@@ -97,3 +97,4 @@ export class UserManagementComponent implements OnInit {
     );
   }
 }
+import { AvatarModule } from 'primeng/avatar';

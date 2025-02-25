@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertService } from './alert.service';
@@ -46,30 +46,18 @@ export class productService {
           }
           throw error;
         }),
-        tap((response) => {
-          console.log('service response', response);
-        })
+        tap((response) => {})
       );
   }
 
-  addProduct(newProduct: Products): Observable<Products> {
-    return this.http
-      .post<Products>(`${this.baseUrl}/Product/addProduct`, newProduct)
-      .pipe(
-        tap((response) => {
-          console.log('Product added successfully', response);
-        }),
-        catchError((error) => {
-          let errorMessage = 'An error occurred while adding the product.';
-          if (error.status === 400) {
-            errorMessage = 'Bad Request: Please check the product data.';
-          } else if (error.status === 500) {
-            errorMessage = 'Internal Server Error: Something went wrong.';
-          }
-          this.showErrorAlert(errorMessage);
-          throw error;
-        })
-      );
+  addProduct(product: Products) {
+    return this.http.post(
+      'https://localhost:7029/Product/addProduct',
+      product,
+      {
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+      }
+    );
   }
 
   getProductById(id: number): Observable<Products> {
@@ -82,26 +70,26 @@ export class productService {
     );
   }
 
-  updateProduct() {
-    console.log('UpdateProduct');
+  updateProduct(product: Products) {
+    console.log('UpdateProduct', product);
+    const url = `${this.baseUrl}/Product/${product.id}`; // Make sure the endpoint matches your API route
+    return this.http.put<Products>(url, product, {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    });
   }
 
-  deleteProduct(id: number): Observable<{ deletedProduct: Products[] }> {
-    return this.http
-      .delete<{ deletedProduct: Products[] }>(
-        `${this.baseUrl}/Product/deleteProduct/${id}`
-      )
-      .pipe(
-        tap((response) => {
-          console.log('Product deleted successfully', response);
-          // You can log or perform any actions with the deleted product details
-          console.log('Deleted Product:', response.deletedProduct);
-        }),
-        catchError((error) => {
-          this.handleError(error);
-          throw error;
-        })
-      );
+  deleteProduct(id: number): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/Product/${id}`).pipe(
+      tap((response) => {
+        console.log('Product deleted successfully', response);
+        // Optionally, you can log any response or data from the API
+      }),
+      catchError((error) => {
+        console.error('Error deleting product:', error); // Log the error if the request fails
+        this.handleError(error); // Handle the error (e.g., show an alert or log it)
+        throw error; // Rethrow the error so it can be caught in the component
+      })
+    );
   }
 
   //Error Handeler
